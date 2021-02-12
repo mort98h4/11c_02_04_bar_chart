@@ -13,7 +13,8 @@ function loop() {
     console.log("loop");
 
     displayData();
-    //setTimeout(displayData, 1000);
+    modifyModel();
+    setTimeout(loop, 1000);
 }
 
 function getNumberOfCustomers() {
@@ -24,16 +25,18 @@ function getNumberOfCustomers() {
 
 function displayData() {
     console.log("displayData");
-    const bar = document.createElement("div");
 
-    for (let i = 0; i <= 40; i++) {
+    document.querySelector("#container").innerHTML = "";
+
+    for (let i = 0; i <= 39; i++) {
        //console.log(i);
+        const bar = document.createElement("div");
         bar.classList.add("bar");
         bar.style.height = model[i]/32*100 + "%";
         document.querySelector("#container").append(bar);
     } 
 
-    modifyModel();
+    
 }
 
 function modifyModel() {
@@ -42,5 +45,4 @@ function modifyModel() {
     const queueSize = getNumberOfCustomers();
     model.shift();
     model.push(queueSize);
-    //loop();
 }
